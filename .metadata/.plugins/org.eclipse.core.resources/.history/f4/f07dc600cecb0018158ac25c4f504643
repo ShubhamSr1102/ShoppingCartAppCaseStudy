@@ -1,0 +1,71 @@
+package com.capgemini.order.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "ITEMS")
+public class LineItem {
+	@Id
+	private int itemId;
+	private int quantity;
+	private int productId;
+	@ManyToOne
+	@JoinColumn(name="orderId")
+	private Order ordera;
+
+	public LineItem() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public LineItem(int orderId, int quantity, int productId, Order order) {
+		super();
+		this.itemId = orderId;
+		this.quantity = quantity;
+		this.productId = productId;
+		this.ordera = order;
+	}
+
+	public int getOrderId() {
+		return itemId;
+	}
+
+	public void setOrderId(int orderId) {
+		this.itemId = orderId;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public int getProductId() {
+		return productId;
+	}
+
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
+
+	public Order getOrder() {
+		return ordera;
+	}
+
+	public void setOrder(Order order) {
+		this.ordera = order;
+	}
+
+	@Override
+	public String toString() {
+		return "LineItem [orderId=" + itemId + ", quantity=" + quantity + ", productId=" + productId + ", order="
+				+ ordera + "]";
+	}
+
+}

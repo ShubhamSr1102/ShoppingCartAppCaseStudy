@@ -1,0 +1,87 @@
+package com.capgemini.customer.entities;
+
+import org.springframework.data.annotation.Id;
+
+@Document(collection = "products")
+public class Customer {
+
+	@Id
+	private int CustomerId;
+	private String customerFirstName;
+	private String customerSecondName;
+	private String customerEmail;
+	private String customerPassword;
+	private Address customerAddress;
+
+	public Customer() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Customer(int customerId, String customerFirstName, String customerSecondName, String customerEmail,
+			String customerPassword, Address customerAddress) {
+		super();
+		CustomerId = customerId;
+		this.customerFirstName = customerFirstName;
+		this.customerSecondName = customerSecondName;
+		this.customerEmail = customerEmail;
+		this.customerPassword = customerPassword;
+		this.customerAddress = customerAddress;
+	}
+
+	public int getCustomerId() {
+		return CustomerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		CustomerId = customerId;
+	}
+
+	public String getCustomerFirstName() {
+		return customerFirstName;
+	}
+
+	public void setCustomerFirstName(String customerFirstName) {
+		this.customerFirstName = customerFirstName;
+	}
+
+	public String getCustomerSecondName() {
+		return customerSecondName;
+	}
+
+	public void setCustomerSecondName(String customerSecondName) {
+		this.customerSecondName = customerSecondName;
+	}
+
+	public String getCustomerEmail() {
+		return customerEmail;
+	}
+
+	public void setCustomerEmail(String customerEmail) {
+		this.customerEmail = customerEmail;
+	}
+
+	public String getCustomerPassword() {
+		return customerPassword;
+	}
+
+	public void setCustomerPassword(String customerPassword) {
+		this.customerPassword = customerPassword;
+	}
+
+	public Address getCustomerAddress() {
+		return customerAddress;
+	}
+
+	public void setCustomerAddress(Address customerAddress) {
+		this.customerAddress = customerAddress;
+	}
+
+	@Override
+	public String toString() {
+		return "Customer [CustomerId=" + CustomerId + ", customerFirstName=" + customerFirstName
+				+ ", customerSecondName=" + customerSecondName + ", customerEmail=" + customerEmail
+				+ ", customerPassword=" + customerPassword + ", customerAddress=" + customerAddress + "]";
+	}
+
+}

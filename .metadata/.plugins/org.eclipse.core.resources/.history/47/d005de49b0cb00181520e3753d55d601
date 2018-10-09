@@ -1,0 +1,5 @@
+package com.capgemini.customer.entities;
+
+public class Address {
+
+}
