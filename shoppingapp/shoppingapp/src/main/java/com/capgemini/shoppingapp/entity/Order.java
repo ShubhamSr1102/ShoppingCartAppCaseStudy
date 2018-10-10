@@ -3,10 +3,7 @@ package com.capgemini.shoppingapp.entity;
 import java.time.LocalDate;
 import java.util.Set;
 
-import javax.persistence.GeneratedValue;
-
 import org.springframework.data.annotation.Id;
-
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -14,7 +11,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Order {
 
 	@Id
-	@GeneratedValue
 	private int orderId;
 	private double total;
 	private int customerId;
