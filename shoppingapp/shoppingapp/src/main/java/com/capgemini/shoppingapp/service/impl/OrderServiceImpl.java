@@ -1,53 +1,55 @@
 package com.capgemini.shoppingapp.service.impl;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import com.capgemini.shoppingapp.entity.LineItem;
 import com.capgemini.shoppingapp.entity.Order;
 import com.capgemini.shoppingapp.exceptions.OrderNotFoundException;
 import com.capgemini.shoppingapp.repository.OrderRepository;
-import com.capgemini.shoppingapp.service.LineItemService;
 import com.capgemini.shoppingapp.service.OrderService;
 
 @Service
-public class ShoppingAppServiceImpl implements OrderService, LineItemService {
+public class OrderServiceImpl implements OrderService {
 
 	@Autowired
 	OrderRepository orderRepository;
 
-	private HashMap<Integer, Set<LineItem>> map = new HashMap<>();
+	private HashMap<Integer, Set<LineItem>> itemCart = new HashMap<>();
 
 	@Override
 	public void addLineItem(LineItem item, int customerId) {
-		Set<LineItem> tempSet = map.get(customerId);
+		Set<LineItem> tempSet = itemCart.get(customerId);
 		if (tempSet == null) {
 			tempSet = new HashSet<>();
 			tempSet.add(item);
-			map.put(customerId, tempSet);
+			itemCart.put(customerId, tempSet);
 		} else {
 			tempSet.add(item);
-			map.put(customerId, tempSet);
+			itemCart.put(customerId, tempSet);
 		}
 	}
 
 	@Override
 	public void removeLineItem(LineItem item, int customerId) {
-		Set<LineItem> tempSet = map.get(customerId);
+		Set<LineItem> tempSet = itemCart.get(customerId);
 		if (tempSet != null) {
 			tempSet.remove(item);
-			map.put(customerId, tempSet);
+			itemCart.put(customerId, tempSet);
 		}
 
 	}
 
 	@Override
 	public Set<LineItem> getLineItems(int customerId) {
-		Set<LineItem> tempSet = map.get(customerId);
+		Set<LineItem> tempSet = itemCart.get(customerId);
 		return tempSet;
 	}
 
@@ -64,8 +66,13 @@ public class ShoppingAppServiceImpl implements OrderService, LineItemService {
 	}
 
 	@Override
-	public void submitOrder(Order order, int customerId) {
-		Set<LineItem> tempSet = map.get(customerId);
+	public Order submitOrder(int customerId) {
+		Order order = new Order();
+		order.setCustomerId(customerId);
+		order.setItems(itemCart.get(customerId));
+		order.setOrderDate(LocalDate.now());
+		order.setTotal(1000);
+		return orderRepository.save(order);
 	}
 
 	@Override

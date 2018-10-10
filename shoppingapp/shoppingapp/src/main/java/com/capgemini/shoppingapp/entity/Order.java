@@ -2,6 +2,7 @@ package com.capgemini.shoppingapp.entity;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,13 +20,13 @@ public class Order {
 	private int customerId;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate orderDate;
-	private List<LineItem> items;
+	private Set<LineItem> items;
 
 	public Order() {
 		super();
 	}
 
-	public Order(int orderId, double total, int customerId, LocalDate orderDate, List<LineItem> items) {
+	public Order(int orderId, double total, int customerId, LocalDate orderDate, Set<LineItem> items) {
 		super();
 		this.orderId = orderId;
 		this.total = total;
@@ -66,11 +67,11 @@ public class Order {
 		this.orderDate = orderDate;
 	}
 
-	public List<LineItem> getItems() {
+	public Set<LineItem> getItems() {
 		return items;
 	}
 
-	public void setItems(List<LineItem> items) {
+	public void setItems(Set<LineItem> items) {
 		this.items = items;
 	}
 
@@ -79,6 +80,5 @@ public class Order {
 		return "Order [orderId=" + orderId + ", total=" + total + ", customerId=" + customerId + ", orderDate="
 				+ orderDate + ", items=" + items + "]";
 	}
-
 	
 }

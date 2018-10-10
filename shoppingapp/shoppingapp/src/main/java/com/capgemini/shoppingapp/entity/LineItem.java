@@ -1,16 +1,7 @@
 package com.capgemini.shoppingapp.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "ITEMS")
 public class LineItem {
-	@Id
-	@GeneratedValue
-	private int itemId;
+
 	private int quantity;
 	private int productId;
 
@@ -18,19 +9,10 @@ public class LineItem {
 		super();
 	}
 
-	public LineItem(int itemId, int quantity, int productId) {
+	public LineItem(int quantity, int productId) {
 		super();
-		this.itemId = itemId;
 		this.quantity = quantity;
 		this.productId = productId;
-	}
-
-	public int getItemId() {
-		return itemId;
-	}
-
-	public void setItemId(int itemId) {
-		this.itemId = itemId;
 	}
 
 	public int getQuantity() {
@@ -51,7 +33,9 @@ public class LineItem {
 
 	@Override
 	public String toString() {
-		return "LineItem [itemId=" + itemId + ", quantity=" + quantity + ", productId=" + productId + "]";
+		return "LineItem [quantity=" + quantity + ", productId=" + productId + "]";
 	}
+
+	
 
 }
