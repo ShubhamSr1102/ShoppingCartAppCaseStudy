@@ -3,11 +3,9 @@ package com.capgemini.shoppingapp.service.impl;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import com.capgemini.shoppingapp.entity.LineItem;
