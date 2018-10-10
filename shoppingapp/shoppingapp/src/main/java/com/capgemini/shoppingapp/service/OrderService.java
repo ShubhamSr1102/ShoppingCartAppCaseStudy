@@ -18,7 +18,7 @@ public interface OrderService {
 
 	public Order getOrder(int orderId) throws OrderNotFoundException;
 
-	public Order submitOrder(int customerId);
+	public Order submitOrder(Order order);
 
 	public void cancelOrder(int orderId) throws OrderNotFoundException;
 

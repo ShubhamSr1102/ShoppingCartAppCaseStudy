@@ -4,7 +4,8 @@ import java.time.LocalDate;
 import java.util.Set;
 
 import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+
+import org.springframework.data.annotation.Id;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;

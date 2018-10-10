@@ -64,12 +64,9 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Order submitOrder(int customerId) {
-		Order order = new Order();
-		order.setCustomerId(customerId);
-		order.setItems(itemCart.get(customerId));
+	public Order submitOrder(Order order) {
 		order.setOrderDate(LocalDate.now());
-		order.setTotal(1000);
+		order.setItems(itemCart.get(order.getCustomerId()));
 		return orderRepository.save(order);
 	}
 

@@ -21,29 +21,29 @@ public class OrderController {
 
 	@Autowired
 	OrderService orderService;
-	
-	@PostMapping("/shopping/{customerId}")
-	public ResponseEntity<LineItem> addLineItem(@RequestBody LineItem item, @PathVariable int customerId) {
+
+	@PostMapping("/shopping")
+	public ResponseEntity<LineItem> addLineItem(@RequestBody LineItem item, int customerId) {
 		orderService.addLineItem(item, customerId);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	
-	@GetMapping("/shopping/{customerId}")
-	public ResponseEntity<Set<LineItem>> getLineItems(@PathVariable int customerId) {
+
+	@GetMapping("/shopping")
+	public ResponseEntity<Set<LineItem>> getLineItems(int customerId) {
 		Set<LineItem> tempSet = orderService.getLineItems(customerId);
 		return new ResponseEntity<Set<LineItem>>(tempSet, HttpStatus.OK);
 	}
 
-	@DeleteMapping("/shopping/{customerId}")
-	public ResponseEntity<Set<LineItem>> removeLineItem(@PathVariable int customerId, @RequestBody LineItem item) {
+	@DeleteMapping("/shopping")
+	public ResponseEntity<Set<LineItem>> removeLineItem(int customerId, @RequestBody LineItem item) {
 		orderService.removeLineItem(item, customerId);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@GetMapping("/shopping/submitorder/{customerId}")
-	public ResponseEntity<Order> submitOrder(@PathVariable int customerId) {
-		return new ResponseEntity<Order>(orderService.submitOrder(customerId), HttpStatus.OK);
+	@PostMapping("/shopping/submitorder")
+	public ResponseEntity<Order> submitOrder(@RequestBody Order order) {
+		return new ResponseEntity<Order>(orderService.submitOrder(order), HttpStatus.OK);
 
 	}
-	
+
 }
