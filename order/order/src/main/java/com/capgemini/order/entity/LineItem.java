@@ -22,7 +22,6 @@ public class LineItem {
 
 	public LineItem() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public LineItem(int itemId, int quantity, int productId, Order order) {

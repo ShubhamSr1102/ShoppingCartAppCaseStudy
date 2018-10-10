@@ -1,0 +1,84 @@
+package com.capgemini.shoppingapp.entity;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
+
+ @Document(collection = "order")
+public class Order {
+
+	@Id
+	@GeneratedValue
+	private int orderId;
+	private double total;
+	private int customerId;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate orderDate;
+	private List<LineItem> items;
+
+	public Order() {
+		super();
+	}
+
+	public Order(int orderId, double total, int customerId, LocalDate orderDate, List<LineItem> items) {
+		super();
+		this.orderId = orderId;
+		this.total = total;
+		this.customerId = customerId;
+		this.orderDate = orderDate;
+		this.items = items;
+	}
+
+	public int getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
+
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
+
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
+	public LocalDate getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(LocalDate orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public List<LineItem> getItems() {
+		return items;
+	}
+
+	public void setItems(List<LineItem> items) {
+		this.items = items;
+	}
+
+	@Override
+	public String toString() {
+		return "Order [orderId=" + orderId + ", total=" + total + ", customerId=" + customerId + ", orderDate="
+				+ orderDate + ", items=" + items + "]";
+	}
+
+	
+}

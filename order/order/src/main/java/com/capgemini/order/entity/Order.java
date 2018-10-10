@@ -28,7 +28,6 @@ public class Order {
 
 	public Order() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Order(int orderId, int productId, int customerId, LocalDate orderDate) {
