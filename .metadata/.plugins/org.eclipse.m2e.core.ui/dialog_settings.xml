@@ -25,6 +25,7 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\shusriva\Documents\Shopping Cart App\shoppingapp"/>
 			<item value="C:\Users\shusriva\Documents\Shopping Cart App\order"/>
 			<item value="C:\Users\shusriva\Documents\Shopping Cart App\product"/>
 			<item value="C:\Users\shusriva\Documents\Shopping Cart App\customer"/>
@@ -51,6 +52,8 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\shusriva\Documents\Shopping Cart App"/>
+			<item value="C:\Users\shusriva\Documents\Shopping Cart App\order\order\src\main\java\com\capgemini\order\entity\LineItem.java"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

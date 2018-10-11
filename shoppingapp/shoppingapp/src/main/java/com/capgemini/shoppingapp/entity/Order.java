@@ -17,18 +17,25 @@ public class Order {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate orderDate;
 	private Set<LineItem> items;
+	private String status;
+	private boolean deleted;
 
 	public Order() {
 		super();
+		status = "OK";
+		deleted = false;
 	}
 
-	public Order(int orderId, double total, int customerId, LocalDate orderDate, Set<LineItem> items) {
+	public Order(int orderId, double total, int customerId, LocalDate orderDate, Set<LineItem> items, String status,
+			boolean deleted) {
 		super();
 		this.orderId = orderId;
 		this.total = total;
 		this.customerId = customerId;
 		this.orderDate = orderDate;
 		this.items = items;
+		this.status = status;
+		this.deleted = deleted;
 	}
 
 	public int getOrderId() {
@@ -71,10 +78,26 @@ public class Order {
 		this.items = items;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
+
 	@Override
 	public String toString() {
 		return "Order [orderId=" + orderId + ", total=" + total + ", customerId=" + customerId + ", orderDate="
-				+ orderDate + ", items=" + items + "]";
+				+ orderDate + ", items=" + items + ", status=" + status + ", deleted=" + deleted + "]";
 	}
-	
+
 }

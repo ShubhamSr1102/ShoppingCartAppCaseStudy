@@ -3,6 +3,8 @@ package com.capgemini.shoppingapp.service.impl;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,34 +54,50 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Set<Order> getOrders(int customerId) throws OrderNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Order> getOrders() throws OrderNotFoundException {
+		return orderRepository.findByDeleted("false");
 	}
 
 	@Override
 	public Order getOrder(int orderId) throws OrderNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Order> optionalOrder = orderRepository.findById(orderId);
+		if (optionalOrder.isPresent()) {
+			if (!optionalOrder.get().isDeleted())
+				return optionalOrder.get();
+		}
+		throw new OrderNotFoundException("Order does not exist!");
 	}
 
 	@Override
 	public Order submitOrder(Order order) {
 		order.setOrderDate(LocalDate.now());
-		order.setItems(itemCart.get(order.getCustomerId()));
+		// order.setItems(itemCart.get(order.getCustomerId()));
 		return orderRepository.save(order);
 	}
 
 	@Override
-	public void cancelOrder(int orderId) throws OrderNotFoundException {
-		// TODO Auto-generated method stub
-
+	public void deleteOrder(int orderId) throws OrderNotFoundException {
+		Optional<Order> optionalOrder = orderRepository.findById(orderId);
+		if (optionalOrder.isPresent()) {
+			if (!optionalOrder.get().isDeleted()) {
+				optionalOrder.get().setDeleted(true);
+				orderRepository.save(optionalOrder.get());
+			}
+		} else
+			throw new OrderNotFoundException("Order does not exist!");
 	}
 
 	@Override
-	public void deleteOrder(Order order) throws OrderNotFoundException {
-		// TODO Auto-generated method stub
-
+	public Order cancelOrder(int orderId) throws OrderNotFoundException {
+		Optional<Order> optionalOrder = orderRepository.findById(orderId);
+		if (optionalOrder.isPresent()) {
+			if (!optionalOrder.get().isDeleted()) {
+				optionalOrder.get().setStatus("CANCELLED");
+				orderRepository.save(optionalOrder.get());
+				return optionalOrder.get();
+			}
+		}
+		throw new OrderNotFoundException("Order does not exist!");
 	}
 
 }

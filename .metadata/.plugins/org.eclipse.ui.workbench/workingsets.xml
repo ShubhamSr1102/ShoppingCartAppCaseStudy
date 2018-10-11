@@ -25,5 +25,8 @@
 <workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1539160544498_6" label="shoppingapp" name="shoppingapp">
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/shoppingapp" type="4"/>
 </workingSet>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1539259310274_7" label="onlineshoppingapp" name="onlineshoppingapp">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/shoppingappclient" type="4"/>
+</workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1539079978433_2" label="Window Working Set" name="Aggregate for window 1539079978432"/>
 </workingSetManager>
