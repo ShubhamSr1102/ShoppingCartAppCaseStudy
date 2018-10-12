@@ -4,15 +4,17 @@ public class LineItem {
 
 	private int quantity;
 	private int productId;
+	private double price;
 
 	public LineItem() {
 		super();
 	}
 
-	public LineItem(int quantity, int productId) {
+	public LineItem(int quantity, int productId, double price) {
 		super();
 		this.quantity = quantity;
 		this.productId = productId;
+		this.price = price;
 	}
 
 	public int getQuantity() {
@@ -31,11 +33,20 @@ public class LineItem {
 		this.productId = productId;
 	}
 
-	@Override
-	public String toString() {
-		return "LineItem [quantity=" + quantity + ", productId=" + productId + "]";
+	public double getPrice() {
+		return price;
 	}
 
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	@Override
+	public String toString() {
+		return "LineItem [quantity=" + quantity + ", productId=" + productId + ", price=" + price + "]";
+	}
+
+	
 	
 
 }

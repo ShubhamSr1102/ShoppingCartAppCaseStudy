@@ -3,5 +3,6 @@
 <aop-project name="shoppingapp"/>
 <aop-project name="customer"/>
 <aop-project name="order"/>
+<aop-project name="shoppingappclient"/>
 <aop-project name="product"/>
 </aop-reference-model>

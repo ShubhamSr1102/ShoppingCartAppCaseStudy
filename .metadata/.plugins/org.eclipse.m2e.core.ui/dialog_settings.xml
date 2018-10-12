@@ -25,6 +25,7 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\shusriva\Documents\Shopping Cart App\shoppingappclient"/>
 			<item value="C:\Users\shusriva\Documents\Shopping Cart App\shoppingapp"/>
 			<item value="C:\Users\shusriva\Documents\Shopping Cart App\order"/>
 			<item value="C:\Users\shusriva\Documents\Shopping Cart App\product"/>
