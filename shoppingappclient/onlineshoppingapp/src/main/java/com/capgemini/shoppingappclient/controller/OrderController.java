@@ -7,20 +7,30 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
 import com.capgemini.shoppingappclient.entity.LineItem;
 import com.capgemini.shoppingappclient.entity.Order;
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.EurekaClient;
+import com.netflix.discovery.shared.Application;
 
 @Controller
 public class OrderController {
+	
+	@Autowired
+    private static EurekaClient eurekaClient;
 
 	private Set<LineItem> itemCart = new HashSet<>();
 	private static final RestTemplate REST_TEMPLATE = new RestTemplate();
-	private static final String baseUrl = "http://localhost:9797/";
-
+	
+	static Application application = eurekaClient.getApplication("");
+    static InstanceInfo instanceInfo = application.getInstances().get(0);
+    private static final String baseUrl = "http://"+instanceInfo.getIPAddr()+ ":"+instanceInfo.getPort();
+	
 	Random r = new Random();
 	
 	@RequestMapping("/")
@@ -73,15 +83,19 @@ public class OrderController {
 		order.setItems(items);
 		order.setTotal(total);
 		
-		order = REST_TEMPLATE.postForObject(baseUrl + "/shop/order", order, Order.class);
+		order = REST_TEMPLATE.postForObject(baseUrl + "/order", order, Order.class);
 		System.out.println(order);
 		return "index";
 	}
 
-	/*@PutMapping("/shop/order/{orderId}")
-	public ResponseEntity<Order> cancelOrder(@PathVariable int orderId, String cancel) {
-		return new ResponseEntity<Order>(orderService.cancelOrder(orderId), HttpStatus.OK);
+	@RequestMapping("/cancelorder")
+	public String cancelOrder() {
+		REST_TEMPLATE.delete(baseUrl + "/order");
+		return "index";
 	}
+	
+	@RequestMapping()
+	public String deleteOrder
 
 	@DeleteMapping("/shop/order/{orderId}")
 	public ResponseEntity<Order> deleteOrder(@PathVariable int orderId) {

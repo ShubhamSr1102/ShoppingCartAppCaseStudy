@@ -7,8 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.capgemini.shoppingapp.exceptions.OrderNotFoundException;
 import com.capgemini.shoppingappclient.entity.Order;
+import com.capgemini.shoppingappclient.exceptions.OrderNotFoundException;
 
 @ControllerAdvice
 public class OrderException {
